@@ -1,89 +1,255 @@
-<!DOCTYPE html>
-<html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Meu Portfólio | Desenvolvedor</title>
-    <!-- Link para o CSS Externo -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Ícones via Lucide (CDN leve) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bruno | Software Developer</title>
 
-    <!-- Navegação -->
-    <nav class="navbar">
-        <div class="logo">Dev<span>Portfolio</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Olá, eu sou o <span class="highlight">Teu Nome</span></h1>
-            <p>Desenvolvedor Web focado em criar experiências digitais incríveis.</p>
-            <a href="#projetos" class="btn-primary">Ver Projetos</a>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Styles (local) -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="h-screen w-screen flex overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-80 h-full bg-slate-950 border-r border-slate-800 flex flex-col p-8 z-30">
+      <div class="mb-12">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-sky-500 flex items-center justify-center text-3xl font-black shadow-2xl mb-6">
+          B
         </div>
-    </section>
+        <h1 class="text-3xl font-extrabold tracking-tight text-white">Bruno</h1>
+        <p class="text-sky-400 font-medium text-sm mt-1 uppercase tracking-widest">Dev Full Stack</p>
+      </div>
 
-    <!-- Sobre Mim -->
-    <section id="sobre" class="section">
-        <div class="container">
-            <h2 class="section-title">Sobre Mim</h2>
-            <p class="section-text">
-                Sou um entusiasta de tecnologia com paixão por transformar ideias em código. 
-                Especialista em criar soluções limpas, eficientes e visualmente atraentes.
-            </p>
-        </div>
-    </section>
+      <nav class="flex flex-col gap-3 flex-grow">
+        <button onclick="toggleSection('about')" class="sidebar-btn w-full py-4 px-6 rounded-xl flex items-center gap-4 text-slate-300 font-semibold">
+          <i class="fas fa-user-astronaut text-sky-400"></i> Sobre Mim
+        </button>
+        <button onclick="toggleSection('projects')" class="sidebar-btn w-full py-4 px-6 rounded-xl flex items-center gap-4 text-slate-300 font-semibold">
+          <i class="fas fa-layer-group text-purple-400"></i> Projetos
+        </button>
+        
+        <div class="my-6 border-t border-slate-800"></div>
 
-    <!-- Projetos -->
-    <section id="projetos" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Meus Projetos</h2>
-            <div class="projects-grid">
-                <!-- Projeto 1 -->
-                <div class="project-card">
-                    <div class="project-info">
-                        <h3>Web App XPTO</h3>
-                        <p>Uma aplicação robusta desenvolvida com tecnologias modernas.</p>
-                        <a href="#" class="project-link">Ver Código</a>
-                    </div>
-                </div>
-                <!-- Projeto 2 -->
-                <div class="project-card">
-                    <div class="project-info">
-                        <h3>Plataforma E-commerce</h3>
-                        <p>Interface intuitiva e focada na experiência do utilizador.</p>
-                        <a href="#" class="project-link">Ver Código</a>
-                    </div>
-                </div>
+        <!-- NOVOS BOTÕES SOLICITADOS -->
+        <a href="https://github.com/brunojsdev" target="_blank" class="github-btn w-full py-4 px-6 rounded-xl flex items-center gap-4 text-white font-semibold transition">
+          <i class="fab fa-github text-xl"></i> GitHub
+        </a>
+        <a href="#" id="linkedin-link" class="linkedin-btn w-full py-4 px-6 rounded-xl flex items-center gap-4 text-white font-semibold transition">
+          <i class="fab fa-linkedin text-xl"></i> LinkedIn
+        </a>
+      </nav>
+
+      <div class="mt-auto pt-6">
+        <p class="text-xs text-slate-500 font-medium">© 2024 • BRUNOJSDEV</p>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <main class="flex-grow h-full relative bg-slate-900 overflow-hidden">
+      
+      <!-- BACKGROUND DECORATION -->
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full -z-10"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-900/10 blur-[100px] rounded-full -z-10"></div>
+
+      <!-- TELA INICIAL / DASHBOARD -->
+      <div id="home-view" class="h-full w-full p-12 overflow-y-auto custom-scrollbar">
+        <header class="mb-12">
+          <h2 class="text-4xl font-bold text-white mb-2">Workspace</h2>
+          <p class="text-slate-400">Selecione uma ferramenta abaixo para explorar minhas habilidades.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- App 1: Calculadora -->
+          <div onclick="openApp('calculator')" class="app-card cursor-pointer p-8 rounded-3xl flex flex-col gap-6">
+            <div class="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center text-2xl shadow-lg shadow-purple-900/40">
+              <i class="fas fa-calculator"></i>
             </div>
-        </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contacto" class="section">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contact-wrapper">
-                <p>Estou disponível para novos projetos e colaborações.</p>
-                <a href="mailto:exemplo@email.com" class="btn-outline">Enviar E-mail</a>
+            <div>
+              <h3 class="text-xl font-bold text-white">Calculadora Pro</h3>
+              <p class="text-slate-400 text-sm mt-2">Lógica aritmética pura aplicada em componentes modernos.</p>
             </div>
+          </div>
+
+          <!-- App 2: Relógio -->
+          <div onclick="openApp('clock')" class="app-card cursor-pointer p-8 rounded-3xl flex flex-col gap-6">
+            <div class="w-14 h-14 rounded-2xl bg-sky-600 flex items-center justify-center text-2xl shadow-lg shadow-sky-900/40">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Relógio Global</h3>
+              <p class="text-slate-400 text-sm mt-2">Manipulação de tempo e datas em tempo real com JS.</p>
+            </div>
+          </div>
+
+          <!-- App 3: Tarefas -->
+          <div onclick="openApp('todo')" class="app-card cursor-pointer p-8 rounded-3xl flex flex-col gap-6">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-700 flex items-center justify-center text-2xl shadow-lg shadow-emerald-950/40">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Task Manager</h3>
+              <p class="text-slate-400 text-sm mt-2">Persistência de dados local e gerenciamento de estados.</p>
+            </div>
+          </div>
+
+          <!-- App 4: Clima -->
+          <div onclick="openApp('weather')" class="app-card cursor-pointer p-8 rounded-3xl flex flex-col gap-6">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500 flex items-center justify-center text-2xl shadow-lg shadow-blue-900/40">
+              <i class="fas fa-cloud-moon"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Weather API</h3>
+              <p class="text-slate-400 text-sm mt-2">Consumo de APIs REST externas com tratamento de dados.</p>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Rodapé -->
-    <footer class="footer">
-        <p>&copy; 2024 DevPortfolio. Todos os direitos reservados.</p>
-    </footer>
+      <!-- SEÇÕES OVERLAY (SOBRE E PROJETOS) -->
+      <div id="about-section" class="hidden absolute inset-0 bg-slate-950/95 z-40 p-12 overflow-y-auto custom-scrollbar animate-open">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex justify-between items-center mb-12">
+            <h2 class="text-5xl font-black text-white">Sobre <span class="text-sky-400">Mim</span></h2>
+            <button onclick="closeOverlay()" class="w-12 h-12 rounded-full border border-slate-700 hover:bg-red-500 transition"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-lg text-slate-300">
+            <div class="space-y-6">
+              <p class="leading-relaxed">Sou um desenvolvedor movido pela curiosidade e pelo desejo de criar soluções digitais que unam performance e estética.</p>
+              <p>Foco atual: <span class="text-white font-bold">Ecossistema JavaScript (Node, React) e Python</span> para automação e análise de dados.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
+              <h3 class="text-white font-bold mb-4 flex items-center gap-2"><i class="fas fa-star text-purple-400"></i> Stack Principal</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-purple-900/30 text-purple-300 rounded-lg text-sm border border-purple-500/20">JavaScript ES6+</span>
+                <span class="px-4 py-2 bg-sky-900/30 text-sky-300 rounded-lg text-sm border border-sky-500/20">Python</span>
+                <span class="px-4 py-2 bg-emerald-900/30 text-emerald-300 rounded-lg text-sm border border-emerald-500/20">Tailwind CSS</span>
+                <span class="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-sm border border-slate-700">HTML5/CSS3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Link para o JavaScript Externo -->
+      <div id="projects-section" class="hidden absolute inset-0 bg-slate-950/95 z-40 p-12 overflow-y-auto custom-scrollbar animate-open">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex justify-between items-center mb-12">
+            <h2 class="text-5xl font-black text-white">Repositórios</h2>
+            <button onclick="closeOverlay()" class="w-12 h-12 rounded-full border border-slate-700 hover:bg-red-500 transition"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="grid gap-4">
+             <a href="#" class="group p-6 bg-slate-900 rounded-2xl border border-slate-800 hover:border-purple-500 transition flex items-center justify-between">
+                <div>
+                   <h4 class="text-xl font-bold text-white group-hover:text-purple-400 transition">Projeto Principal 01</h4>
+                   <p class="text-slate-500 text-sm">Automação de processos com Python e Selenium.</p>
+                </div>
+                <i class="fas fa-chevron-right text-slate-700 group-hover:text-purple-400 group-hover:translate-x-2 transition"></i>
+             </a>
+             <!-- Adicionar mais repos conforme necessário -->
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL DOS APPS (FULL VIEW) -->
+      <div id="app-wrapper" class="hidden absolute inset-0 bg-slate-950 z-50 flex flex-col animate-open">
+        <nav class="h-20 border-b border-slate-800 px-8 flex items-center justify-between bg-slate-900/50">
+          <div class="flex items-center gap-4">
+            <div id="app-icon-container" class="w-10 h-10 rounded-lg flex items-center justify-center text-white"></div>
+            <h3 id="app-title" class="text-xl font-bold text-white uppercase tracking-tighter">APP NAME</h3>
+          </div>
+          <button onclick="closeApp()" class="px-6 py-2 bg-red-600/10 text-red-500 hover:bg-red-600 hover:text-white font-bold rounded-xl transition">
+            ENCERRAR
+          </button>
+        </nav>
+
+        <div id="app-content" class="flex-grow flex items-center justify-center p-8 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+          
+          <!-- 1. CALCULADORA -->
+          <div id="app-calculator" class="hidden w-full max-w-sm bg-slate-900 p-6 rounded-[2.5rem] shadow-2xl border border-slate-800">
+            <input type="text" id="calc-display" readonly class="w-full bg-black/40 text-right text-5xl text-white p-6 rounded-3xl mb-6 font-light focus:outline-none border border-slate-800" value="" />
+            <div class="grid grid-cols-4 gap-3">
+              <button onclick="calcClear()" class="p-5 bg-red-600/20 text-red-400 rounded-2xl font-bold hover:bg-red-600 hover:text-white transition">C</button>
+              <button onclick="calcInput('/')" class="p-5 bg-slate-800 text-sky-400 rounded-2xl font-bold hover:bg-sky-500 hover:text-white transition">÷</button>
+              <button onclick="calcInput('*')" class="p-5 bg-slate-800 text-sky-400 rounded-2xl font-bold hover:bg-sky-500 hover:text-white transition">×</button>
+              <button onclick="calcDelete()" class="p-5 bg-slate-800 text-white rounded-2xl font-bold hover:bg-slate-700 transition"><i class="fas fa-backspace"></i></button>
+              
+              <button onclick="calcInput('7')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">7</button>
+              <button onclick="calcInput('8')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">8</button>
+              <button onclick="calcInput('9')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">9</button>
+              <button onclick="calcInput('-')" class="p-5 bg-slate-800 text-sky-400 rounded-2xl font-bold hover:bg-sky-500 hover:text-white transition">-</button>
+
+              <button onclick="calcInput('4')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">4</button>
+              <button onclick="calcInput('5')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">5</button>
+              <button onclick="calcInput('6')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">6</button>
+              <button onclick="calcInput('+')" class="p-5 bg-slate-800 text-sky-400 rounded-2xl font-bold hover:bg-sky-500 hover:text-white transition">+</button>
+
+              <button onclick="calcInput('1')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">1</button>
+              <button onclick="calcInput('2')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">2</button>
+              <button onclick="calcInput('3')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">3</button>
+              <button onclick="calcResult()" class="row-span-2 p-5 bg-purple-600 text-white rounded-2xl font-bold hover:bg-purple-500 shadow-lg shadow-purple-900/40">=</button>
+
+              <button onclick="calcInput('0')" class="col-span-2 p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">0</button>
+              <button onclick="calcInput('.')" class="p-5 bg-slate-800/50 text-white rounded-2xl font-semibold hover:bg-slate-700 transition">.</button>
+            </div>
+          </div>
+
+          <!-- 2. RELÓGIO -->
+          <div id="app-clock" class="hidden text-center">
+            <div class="relative w-96 h-96 border-8 border-slate-800 rounded-full flex items-center justify-center shadow-2xl bg-black">
+              <div class="absolute inset-4 border-2 border-purple-500/20 rounded-full animate-pulse"></div>
+              <div>
+                <div id="clock-time" class="text-7xl font-black text-white tracking-tighter">00:00</div>
+                <div id="clock-date" class="text-sky-500 mt-4 text-sm font-bold uppercase tracking-[0.3em]">CARREGANDO</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TAREFAS -->
+          <div id="app-todo" class="hidden w-full max-w-lg h-[600px] flex flex-col glass-panel p-8 rounded-[3rem]">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-clipboard-list text-emerald-500"></i> Task Board</h2>
+            <div class="flex gap-3 mb-8">
+              <input type="text" id="todo-input" placeholder="O que precisa ser feito?" class="flex-grow p-4 rounded-2xl bg-black text-white border border-slate-800 focus:border-emerald-500 outline-none transition" />
+              <button onclick="addTodo()" class="bg-emerald-600 hover:bg-emerald-500 text-white w-14 rounded-2xl transition flex items-center justify-center shadow-lg shadow-emerald-900/40"><i class="fas fa-plus"></i></button>
+            </div>
+            <ul id="todo-list" class="flex flex-col gap-3 overflow-y-auto custom-scrollbar flex-grow pr-2"></ul>
+          </div>
+
+          <!-- 4. CLIMA -->
+          <div id="app-weather" class="hidden w-full max-w-sm text-center">
+            <div class="bg-gradient-to-br from-indigo-950 to-black p-12 rounded-[3rem] text-white shadow-2xl border border-white/5 relative overflow-hidden">
+              <div class="absolute -top-10 -right-10 w-40 h-40 bg-sky-500/10 blur-[50px] rounded-full"></div>
+              <h2 class="text-3xl font-black mb-1">São Paulo</h2>
+              <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-10">Live Forecast</p>
+              
+              <div class="flex flex-col items-center gap-6 mb-10">
+                <i id="weather-icon" class="fas fa-sun text-7xl text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)] animate-bounce"></i>
+                <div class="text-8xl font-black tracking-tighter" id="weather-temp">--°</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                   <span class="block text-[10px] text-slate-500 uppercase font-bold mb-1">Wind</span>
+                   <span class="font-bold text-sky-400" id="weather-wind">-- km/h</span>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                   <span class="block text-[10px] text-slate-500 uppercase font-bold mb-1">Status</span>
+                   <span class="font-bold text-purple-400">Clear</span>
+                </div>
+              </div>
+              <button onclick="updateWeather()" class="mt-8 text-[10px] font-bold uppercase tracking-widest border border-slate-800 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Sincronizar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts (local) -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

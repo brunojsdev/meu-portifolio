@@ -1,128 +1,89 @@
-/* 1. Reset e Variáveis */
+/* Import font (mover do <style> interno) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 :root {
-    --primary: #2563eb;
-    --dark: #1f2937;
-    --light: #f9fafb;
-    --text: #4b5563;
-    --white: #ffffff;
-    --transition: all 0.3s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth; /* Permite a navegação suave entre as âncoras */
+  --color-deep-black: #020617;
+  --color-dark-blue: #1e1b4b;
+  --color-bright-blue: #38bdf8;
+  --color-dark-green: #064e3b;
+  --color-purple: #7e22ce;
+  --color-white: #ffffff;
 }
 
 body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.6;
-    color: var(--text);
-    background-color: var(--white);
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-deep-black);
+  color: var(--color-white);
+  margin: 0;
+  overflow: hidden; /* Mantém a experiência de app full screen */
 }
 
-/* 2. Componentes Reutilizáveis */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+.glass-panel {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.1);
 }
 
-.section {
-    padding: 100px 0;
+.sidebar-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
 }
 
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    color: var(--dark);
+.sidebar-btn:hover {
+  background-color: var(--color-purple);
+  border-color: var(--color-bright-blue);
+  transform: translateX(5px);
 }
 
-.bg-light { background-color: var(--light); }
-
-.btn-primary {
-    background: var(--primary);
-    color: var(--white);
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    display: inline-block;
+.github-btn {
+  background-color: var(--color-dark-green);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
-
-/* 3. Navegação */
-.navbar {
-    position: fixed;
-    top: 0; width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.github-btn:hover {
+  background-color: #065f46;
+  border-color: var(--color-bright-blue);
 }
 
-.logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
-.logo span { color: var(--primary); }
-
-.nav-links { display: flex; list-style: none; }
-.nav-links li { margin-left: 30px; }
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 500;
-    transition: var(--transition);
-}
-.nav-links a:hover { color: var(--primary); }
-
-/* 4. Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+.linkedin-btn {
+  background-color: var(--color-dark-blue);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.highlight { color: var(--primary); }
-
-/* 5. Projetos */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.linkedin-btn:hover {
+  background-color: #312e81;
+  border-color: var(--color-bright-blue);
 }
 
-.project-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: var(--transition);
+.app-card {
+  background: linear-gradient(145deg, #0f172a, #1e1b4b);
+  border: 1px solid rgba(126, 34, 206, 0.2);
+  transition: all 0.3s ease;
 }
 
-.project-card:hover { transform: translateY(-5px); }
-
-/* 6. Footer */
-.footer {
-    padding: 40px 0;
-    text-align: center;
-    background: var(--dark);
-    color: var(--white);
+.app-card:hover {
+  border-color: var(--color-bright-blue);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+  transform: translateY(-5px);
 }
 
-/* Responsividade Básica */
-@media (max-width: 768px) {
-    .nav-links { display: none; } /* Simplicidade para Mobile */
-    .section-title { font-size: 2rem; }
+/* custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-deep-black);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-purple);
+  border-radius: 10px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-open {
+  animation: slideIn 0.3s forwards;
 }
