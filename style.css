@@ -1,89 +1,155 @@
-/* Import font (mover do <style> interno) */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
-
+/* * CONFIGURAÇÕES GERAIS E PALETA DE CORES 
+ * Cores: Azul Claro, Azul Escuro, Verde Escuro, Roxo, Preto, Branco.
+ */
 :root {
-  --color-deep-black: #020617;
-  --color-dark-blue: #1e1b4b;
-  --color-bright-blue: #38bdf8;
-  --color-dark-green: #064e3b;
-  --color-purple: #7e22ce;
-  --color-white: #ffffff;
+    --cor-preto: #050505;
+    --cor-branco: #ffffff;
+    --cor-azul-escuro: #0f172a;
+    --cor-azul-claro: #38bdf8;
+    --cor-verde-escuro: #15803d;
+    --cor-roxo: #7e22ce;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background-color: var(--color-deep-black);
-  color: var(--color-white);
-  margin: 0;
-  overflow: hidden; /* Mantém a experiência de app full screen */
+    background-color: var(--cor-preto);
+    color: var(--cor-branco);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.glass-panel {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.1);
+/* NAVEGAÇÃO */
+.section-container {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
 }
 
-.sidebar-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid transparent;
+.section-container.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.sidebar-btn:hover {
-  background-color: var(--color-purple);
-  border-color: var(--color-bright-blue);
-  transform: translateX(5px);
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.github-btn {
-  background-color: var(--color-dark-green);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* HEADER */
+header {
+    text-align: center;
+    margin: 40px 0 20px;
 }
 
-.github-btn:hover {
-  background-color: #065f46;
-  border-color: var(--color-bright-blue);
+h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(to right, var(--cor-branco), var(--cor-azul-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.linkedin-btn {
-  background-color: var(--color-dark-blue);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.subtitle {
+    color: var(--cor-azul-claro);
+    font-size: 1.2rem;
 }
 
-.linkedin-btn:hover {
-  background-color: #312e81;
-  border-color: var(--color-bright-blue);
+/* MENU */
+.main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 60px;
 }
 
-.app-card {
-  background: linear-gradient(145deg, #0f172a, #1e1b4b);
-  border: 1px solid rgba(126, 34, 206, 0.2);
-  transition: all 0.3s ease;
+.menu-btn {
+    padding: 12px 30px;
+    border: 2px solid var(--cor-azul-claro);
+    background: transparent;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.app-card:hover {
-  border-color: var(--color-bright-blue);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
-  transform: translateY(-5px);
+.menu-btn:hover {
+    background: var(--cor-azul-claro);
+    color: black;
+    box-shadow: 0 0 15px var(--cor-azul-claro);
 }
 
-/* custom scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: var(--color-deep-black);
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--color-purple);
-  border-radius: 10px;
+.menu-btn.destaque { border-color: var(--cor-roxo); }
+.menu-btn.destaque:hover { background: var(--cor-roxo); color: white; }
+
+/* WIDGETS */
+.section-title {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--cor-roxo);
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 30px;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+.widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
 }
 
-.animate-open {
-  animation: slideIn 0.3s forwards;
+.widget-card {
+    background: var(--cor-azul-escuro);
+    border: 1px solid var(--cor-roxo);
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.4s;
 }
+
+.widget-card.collapsed { cursor: pointer; text-align: center; }
+.widget-card.collapsed:hover { background: var(--cor-roxo); }
+
+.widget-card.expanded { border-color: var(--cor-azul-claro); }
+
+.widget-content { width: 100%; margin-top: 15px; }
+
+/* CALCULADORA */
+.calc-display {
+    background: black;
+    color: var(--cor-azul-claro);
+    padding: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+
+.calc-btn { background: #1e293b; color: white; border-radius: 4px; padding: 10px; border: none; cursor: pointer; }
+
+/* TODO LIST */
+.todo-input-group { display: flex; gap: 5px; margin-bottom: 10px; }
+.todo-input { flex: 1; background: black; color: white; border: 1px solid var(--cor-azul-claro); padding: 5px; border-radius: 4px; }
+.todo-add-btn { background: var(--cor-roxo); color: white; padding: 0 10px; border-radius: 4px; cursor: pointer; }
+.todo-list { list-style: none; }
+.todo-list li { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 5px 0; }
+.todo-delete { color: #ef4444; cursor: pointer; margin-left: 10px; }
+.todo-check { color: var(--cor-verde-escuro); cursor: pointer; }
+
+/* GERAL */
+.back-btn { background: none; color: var(--cor-azul-claro); margin-bottom: 20px; cursor: pointer; }
+.content-box { background: var(--cor-azul-escuro); border: 1px solid var(--cor-azul-claro); padding: 30px; border-radius: 15px; max-width: 800px; width: 100%; }
+.skill-badge { border: 1px solid var(--cor-verde-escuro); padding: 5px 15px; border-radius: 5px; margin-right: 5px; }
+
+footer { text-align: center; padding: 20px; color: #555; font-size: 0.8rem; }
