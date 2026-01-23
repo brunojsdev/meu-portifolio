@@ -6,16 +6,15 @@
     <title>Portfólio | Bruno Silveira</title>
     <style>
         /* * CONFIGURAÇÕES GERAIS E PALETA DE CORES 
-         * Restrição de cores: Azul Claro, Azul Escuro, Verde Escuro, Roxo, Preto, Branco.
+         * Paleta: Azul Escuro, Azul Claro, Preto, Branco, Roxo.
          */
         :root {
-            --cor-preto: #050505;
-            --cor-branco: #ffffff;
-            --cor-azul-escuro: #0f172a;
-            --cor-azul-claro: #38bdf8;
-            --cor-verde-escuro: #15803d; /* Usado para sucessos e detalhes */
-            --cor-roxo: #7e22ce; /* Usado para criatividade e destaques */
-            --bg-glass: rgba(15, 23, 42, 0.8); /* Azul escuro com transparência */
+            --cor-bg-main: #020617;        /* Azul muito escuro (quase preto) */
+            --cor-bg-card: #0f172a;        /* Azul escuro para cartões */
+            --cor-texto: #f8fafc;          /* Branco gelo */
+            --cor-destaque: #38bdf8;       /* Azul Claro (Sky Blue) */
+            --cor-roxo: #a855f7;           /* Roxo para detalhes sutis */
+            --cor-borda: #1e293b;          /* Cor de borda suave */
         }
 
         * {
@@ -26,8 +25,12 @@
         }
 
         body {
-            background-color: var(--cor-preto);
-            color: var(--cor-branco);
+            background-color: var(--cor-bg-main);
+            /* Gradiente sutil para não ficar chapado */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08) 0%, transparent 25%);
+            color: var(--cor-texto);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -35,9 +38,8 @@
         }
 
         /* TIPOGRAFIA E UTILITÁRIOS */
-        .text-destaque { color: var(--cor-azul-claro); }
+        .text-destaque { color: var(--cor-destaque); }
         .text-roxo { color: var(--cor-roxo); }
-        .text-verde { color: var(--cor-verde-escuro); }
         
         button {
             cursor: pointer;
@@ -45,6 +47,8 @@
             outline: none;
             transition: all 0.3s ease;
         }
+
+        a { text-decoration: none; color: inherit; }
 
         /* NAVEGAÇÃO / TRANSIÇÃO DE TELAS */
         .section-container {
@@ -75,7 +79,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza tudo verticalmente */
+            align-items: center;
         }
 
         header {
@@ -88,16 +92,19 @@
             font-size: 3.5rem;
             font-weight: 800;
             letter-spacing: -1px;
-            background: linear-gradient(to right, var(--cor-branco), var(--cor-azul-claro));
+            background: linear-gradient(to right, var(--cor-texto), var(--cor-destaque));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: var(--cor-azul-claro);
+            color: var(--cor-destaque);
             margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         /* MENU DE BOTÕES PRINCIPAIS */
@@ -110,53 +117,59 @@
             width: 100%;
         }
 
+        /* Estilo UNIFICADO para todos os botões do menu */
         .menu-btn {
             padding: 12px 30px;
             font-size: 1rem;
             font-weight: 600;
             background-color: transparent;
-            border: 2px solid var(--cor-azul-claro);
-            color: var(--cor-branco);
-            border-radius: 50px;
-            text-decoration: none;
+            border: 1px solid var(--cor-destaque); /* Azul claro para todos */
+            color: var(--cor-destaque);
+            border-radius: 4px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--cor-destaque);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .menu-btn:hover::before {
+            width: 100%;
         }
 
         .menu-btn:hover {
-            background-color: var(--cor-azul-claro);
-            color: var(--cor-preto);
-            box-shadow: 0 0 15px var(--cor-azul-claro);
+            color: var(--cor-bg-main);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
             transform: translateY(-2px);
         }
 
-        .menu-btn.destaque {
-            border-color: var(--cor-roxo);
-        }
-        .menu-btn.destaque:hover {
-            background-color: var(--cor-roxo);
-            box-shadow: 0 0 15px var(--cor-roxo);
-        }
-
-        .menu-btn.github { border-color: var(--cor-verde-escuro); }
-        .menu-btn.github:hover { background: var(--cor-verde-escuro); }
-
-        /* TÍTULO DA SEÇÃO DE PEQUENOS PROJETOS */
+        /* TÍTULO DA SEÇÃO */
         .section-title {
-            font-size: 2rem;
-            color: var(--cor-branco);
+            font-size: 1.5rem;
+            color: var(--cor-texto);
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-bottom: 2px solid var(--cor-roxo);
-            padding-bottom: 10px;
+            border-left: 4px solid var(--cor-roxo);
+            padding-left: 15px;
             width: 100%;
             max-width: 1200px;
             text-align: left;
         }
 
-        /* GRID DE MINI PROJETOS */
+        /* GRID DE WIDGETS */
         .widgets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -166,11 +179,12 @@
         }
 
         .widget-card {
-            background-color: var(--cor-azul-escuro);
-            border: 1px solid var(--cor-roxo);
-            border-radius: 15px;
+            background-color: var(--cor-bg-card);
+            border: 1px solid var(--cor-borda);
+            border-bottom: 2px solid var(--cor-destaque);
+            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -180,6 +194,11 @@
             transition: all 0.4s ease;
             cursor: pointer;
             height: auto;
+        }
+
+        .widget-card:hover {
+            border-color: var(--cor-roxo);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
         }
 
         .widget-card.collapsed .widget-content {
@@ -192,18 +211,18 @@
         }
         
         .widget-card.collapsed:hover {
-            background-color: var(--cor-roxo);
+            background-color: #1e293b;
             transform: translateY(-5px);
         }
 
         .widget-card.expanded {
-            border-color: var(--cor-azul-claro);
+            border-color: var(--cor-roxo);
             cursor: default;
         }
 
         .widget-title {
-            color: var(--cor-azul-claro);
-            font-size: 1.1rem;
+            color: var(--cor-destaque);
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             width: 100%;
@@ -213,15 +232,15 @@
         }
         
         .widget-card.expanded .widget-title {
-            border-bottom: 1px solid var(--cor-roxo);
+            border-bottom: 1px solid var(--cor-borda);
             padding-bottom: 10px;
             margin-bottom: 15px;
             text-align: left;
-            font-size: 0.9rem;
+            color: var(--cor-roxo);
         }
 
         .widget-card.collapsed .widget-title {
-            color: var(--cor-branco);
+            color: var(--cor-texto);
             border: none;
             margin: 0;
             padding: 0;
@@ -239,7 +258,7 @@
 
         .expand-icon {
             font-size: 1.5rem;
-            color: var(--cor-branco);
+            color: var(--cor-destaque);
             margin-top: 10px;
             display: none;
         }
@@ -252,9 +271,10 @@
             font-size: 2.5rem;
             font-weight: bold;
             font-family: 'Courier New', monospace;
-            color: var(--cor-branco);
-            text-shadow: 0 0 10px var(--cor-azul-claro);
+            color: var(--cor-destaque);
             text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
         /* WIDGET: CLIMA */
@@ -264,17 +284,23 @@
         .weather-temp {
             font-size: 3rem;
             font-weight: bold;
+            color: var(--cor-texto);
         }
         .weather-city {
-            color: #aaa;
+            color: #94a3b8;
         }
         .weather-btn {
             margin-top: 10px;
-            padding: 5px 15px;
-            background: var(--cor-verde-escuro);
-            color: white;
-            border-radius: 5px;
+            padding: 6px 15px;
+            background: transparent;
+            color: var(--cor-destaque);
+            border: 1px solid var(--cor-destaque);
+            border-radius: 4px;
             font-size: 0.8rem;
+        }
+        .weather-btn:hover {
+            background: var(--cor-destaque);
+            color: var(--cor-bg-main);
         }
 
         /* WIDGET: TODO LIST */
@@ -286,18 +312,27 @@
         }
         .todo-input {
             flex: 1;
-            background: var(--cor-preto);
-            border: 1px solid var(--cor-azul-claro);
+            background: var(--cor-bg-main);
+            border: 1px solid var(--cor-borda);
             color: white;
-            padding: 5px;
+            padding: 8px;
             border-radius: 4px;
+        }
+        .todo-input:focus {
+            border-color: var(--cor-destaque);
         }
         .todo-add-btn {
             background: var(--cor-roxo);
             color: white;
-            padding: 0 10px;
+            padding: 0 15px;
             border-radius: 4px;
+            font-weight: bold;
         }
+        .todo-add-btn:hover { 
+            background: var(--cor-destaque);
+            color: var(--cor-bg-main);
+        }
+
         .todo-list {
             list-style: none;
             width: 100%;
@@ -310,42 +345,31 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--cor-borda);
             font-size: 0.9rem;
         }
-        .todo-item-text {
-            flex: 1;
-            padding-right: 10px;
-        }
-        .todo-actions {
-            display: flex;
-            gap: 10px;
-        }
         .todo-check {
-            color: var(--cor-verde-escuro);
+            color: var(--cor-destaque);
             cursor: pointer;
         }
         .todo-delete {
-            color: #991b1b;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        .todo-delete:hover {
             color: #ef4444;
+            cursor: pointer;
+            margin-left: 10px;
         }
 
         /* WIDGET: CALCULADORA */
         .calc-display {
             width: 100%;
-            background: var(--cor-preto);
-            color: var(--cor-azul-claro);
+            background: var(--cor-bg-main);
+            color: var(--cor-destaque);
             text-align: right;
-            padding: 10px;
+            padding: 15px;
             font-family: monospace;
             font-size: 1.2rem;
             margin-bottom: 10px;
             border-radius: 4px;
+            border: 1px solid var(--cor-borda);
         }
         .calc-keys {
             display: grid;
@@ -354,22 +378,28 @@
             width: 100%;
         }
         .calc-btn {
-            background: var(--cor-azul-escuro);
+            background: #1e293b;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
-            border: 1px solid #333;
+            border: 1px solid transparent;
         }
-        .calc-btn:hover { background: var(--cor-roxo); }
-        .calc-btn.op { background: var(--cor-verde-escuro); }
-        .calc-btn.clear { background: #991b1b; }
+        .calc-btn:hover { 
+            background: var(--cor-destaque); 
+            color: var(--cor-bg-main);
+        }
+        .calc-btn.op { background: #334155; color: var(--cor-destaque); font-weight: bold; }
+        .calc-btn.op:hover { background: var(--cor-destaque); color: var(--cor-bg-main);}
+        
+        .calc-btn.clear { background: #450a0a; color: #fca5a5; }
+        .calc-btn.clear:hover { background: #ef4444; color: white; }
 
         /* * TELA SOBRE MIM 
          */
         .content-box {
-            background: var(--cor-azul-escuro);
-            border: 1px solid var(--cor-azul-claro);
-            border-radius: 20px;
+            background: var(--cor-bg-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
             padding: 40px;
             max-width: 900px;
             width: 100%;
@@ -381,11 +411,15 @@
             border-bottom: 2px solid var(--cor-roxo);
             padding-bottom: 20px;
             margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
         }
 
         .about-header h2 {
             font-size: 2.5rem;
-            color: var(--cor-branco);
+            color: var(--cor-texto);
         }
 
         .about-grid {
@@ -399,17 +433,19 @@
         }
 
         .profile-info h3 {
-            color: var(--cor-azul-claro);
+            color: var(--cor-destaque);
             margin-bottom: 10px;
             font-size: 1.5rem;
         }
         
         .role-tag {
-            background-color: var(--cor-roxo);
-            color: white;
+            background-color: transparent;
+            border: 1px solid var(--cor-roxo);
+            color: var(--cor-roxo);
             padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
             display: inline-block;
             margin-bottom: 20px;
         }
@@ -418,14 +454,16 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ccc;
+            color: #94a3b8;
             margin-bottom: 20px;
+            font-size: 0.9rem;
         }
 
         .bio-text {
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 20px;
             text-align: justify;
+            color: #cbd5e1;
         }
 
         .skills-container {
@@ -438,15 +476,19 @@
             margin-top: 10px;
         }
         .skill-badge {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--cor-verde-escuro);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid var(--cor-borda);
+            color: #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
         }
         .skill-badge:hover {
-            background: var(--cor-verde-escuro);
-            color: white;
+            border-color: var(--cor-destaque);
+            color: var(--cor-destaque);
+            background: rgba(56, 189, 248, 0.1);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
         }
 
         /* * TELA PROJETOS 
@@ -459,48 +501,108 @@
         }
 
         .project-card {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 200px;
+            background: var(--cor-bg-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            padding: 25px;
+            min-height: 220px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.3s;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
         }
 
         .project-card:hover {
-            border-color: var(--cor-azul-claro);
-            transform: scale(1.02);
+            border-color: var(--cor-destaque);
+            transform: translateY(-5px);
+        }
+        
+        /* Faixa decorativa no topo do card */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cor-destaque), transparent);
         }
 
         .project-card h4 {
-            color: var(--cor-azul-claro);
+            color: var(--cor-texto);
             margin-bottom: 10px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .project-techs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tech-mini {
+            font-size: 0.75rem;
+            color: var(--cor-destaque);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Botão do Repositório */
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--cor-borda);
+            color: var(--cor-texto);
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .repo-link:hover {
+            background: var(--cor-roxo);
+            border-color: var(--cor-roxo);
+            color: white;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
         }
 
         .back-btn {
             margin-bottom: 20px;
             align-self: flex-start;
             background: transparent;
-            color: var(--cor-azul-claro);
+            color: var(--cor-destaque);
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        .back-btn:hover { color: var(--cor-branco); }
+        .back-btn:hover { color: var(--cor-texto); }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             font-size: 0.8rem;
-            color: #555;
+            color: #64748b;
             margin-top: auto;
+            border-top: 1px solid #1e293b;
         }
 
     </style>
@@ -517,19 +619,19 @@
         <div id="home-content">
             
             <nav class="main-menu">
-                <button class="menu-btn destaque" onclick="showSection('about')">Sobre Mim</button>
+                <button class="menu-btn" onclick="showSection('about')">Sobre Mim</button>
                 <button class="menu-btn" onclick="showSection('projects')">Outros Projetos</button>
                 
                 <a href="#" class="menu-btn" target="_blank" title="Link para LinkedIn">
                     LinkedIn
                 </a>
                 
-                <a href="https://github.com/brunojsdev" class="menu-btn github" target="_blank">
+                <a href="https://github.com/brunojsdev" class="menu-btn" target="_blank">
                     GitHub
                 </a>
             </nav>
 
-            <h2 class="section-title">Projetos</h2>
+            <h2 class="section-title">Experimentos & Widgets</h2>
 
             <div class="widgets-grid">
                 
@@ -626,7 +728,7 @@
         
         <div class="content-box">
             <div class="about-header">
-                <h2>Mais sobre mim</h2>
+                <h2>Sobre o Desenvolvedor</h2>
             </div>
             
             <div class="about-grid">
@@ -640,7 +742,7 @@
                     </div>
 
                     <div style="margin-top: 30px;">
-                        <h4 class="text-destaque">Objetivo de Carreira</h4>
+                        <h4 class="text-destaque" style="margin-bottom: 10px;">Objetivo de Carreira</h4>
                         <p class="bio-text">
                             Decidi aprender programação motivado pelo interesse em tecnologia e pela possibilidade de criar soluções práticas para problemas reais. Busco desenvolver habilidades técnicas sólidas, com foco em aprendizado contínuo, boas práticas de desenvolvimento e evolução profissional na área de software.
                         </p>
@@ -650,19 +752,20 @@
                 <div>
                     <h4 class="text-destaque">Tech Stack</h4>
                     <div class="skills-container">
-                        <p style="font-size: 0.9rem; color:#ccc;">Linguagens e Ferramentas que estou aprendendo:</p>
+                        <p style="font-size: 0.9rem; color:#888;">Linguagens e Ferramentas:</p>
                         <div class="skills-list">
-                            <span class="skill-badge" style="border-color: var(--cor-azul-claro);">Python</span>
-                            <span class="skill-badge" style="border-color: #f7df1e;">JavaScript</span>
-                            <span class="skill-badge" style="border-color: #e34f26;">HTML</span>
-                            <span class="skill-badge" style="border-color: #264de4;">CSS</span>
-                            <span class="skill-badge" style="border-color: #f89820;">Java</span>
-                            <span class="skill-badge" style="border-color: #38bdf8;">Tailwind</span>
+                            <!-- Apenas HTML, CSS, JS e Python conforme solicitado -->
+                            <span class="skill-badge">HTML5</span>
+                            <span class="skill-badge">CSS</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">Java</span>
+                            <span class="skill-badge">Tailwind</span>
                         </div>
                     </div>
 
                     <div style="margin-top: 30px;">
-                        <h4 class="text-roxo">Interesses Pessoais</h4>
+                        <h4 class="text-roxo" style="margin-bottom: 10px;">Interesses Pessoais</h4>
                         <p class="bio-text">
                             Tenho interesse em animes, jogos como Pokémon e animações independentes no YouTube, que utilizo como inspiração para projetos pessoais e estudos em programação. Também pratico caminhadas, buscando equilíbrio, foco e constância no aprendizado.
                         </p>
@@ -678,33 +781,70 @@
         
         <div class="content-box">
             <div class="about-header">
-                <h2>Projetos</h2>
-                <p class="subtitle">Repositórios e Experimentos</p>
+                <h2>Meus Projetos</h2>
+                <p class="subtitle" style="font-size: 1rem;">Repositórios do GitHub</p>
             </div>
 
             <div class="projects-grid">
+                
+                <!-- PROJETO 1 -->
                 <div class="project-card">
-                    <h4>Portfólio Pessoal</h4>
-                    <p style="font-size: 0.9rem; color: #ccc;">Este site que você está acessando. Feito com HTML, CSS e JS puro.</p>
+                    <div>
+                        <h4>Portfólio Pessoal</h4>
+                        <div class="project-techs">
+                            <span class="tech-mini">HTML</span>
+                            <span class="tech-mini">CSS</span>
+                            <span class="tech-mini">JS</span>
+                        </div>
+                        <p class="project-desc">
+                            Este site que você está acessando. Uma Single Page Application feita sem frameworks para demonstrar domínio do básico da web.
+                        </p>
+                    </div>
+                    <a href="https://github.com/brunojsdev/portfolio" target="_blank" class="repo-link">
+                        Ver Repositório ↗
+                    </a>
                 </div>
 
+                <!-- PROJETO 2 -->
                 <div class="project-card">
-                    <h4>Em breve</h4>
-                    <p style="font-size: 0.9rem; color: #666;">Espaço reservado para adicionar repositórios do GitHub.</p>
-                    <span style="font-size: 2rem; color: var(--cor-verde-escuro); margin-top: 10px;">+</span>
+                    <div>
+                        <h4>Automação com Python</h4>
+                        <div class="project-techs">
+                            <span class="tech-mini">Python</span>
+                            <span class="tech-mini">Scripts</span>
+                        </div>
+                        <p class="project-desc">
+                            Scripts desenvolvidos para automatizar tarefas repetitivas e manipulação de arquivos.
+                        </p>
+                    </div>
+                    <a href="#" target="_blank" class="repo-link">
+                        Ver Repositório ↗
+                    </a>
                 </div>
 
+                <!-- PROJETO 3 -->
                 <div class="project-card">
-                    <h4>Em breve</h4>
-                    <p style="font-size: 0.9rem; color: #666;">Espaço reservado para adicionar repositórios do GitHub.</p>
-                    <span style="font-size: 2rem; color: var(--cor-verde-escuro); margin-top: 10px;">+</span>
+                    <div>
+                        <h4>Landing Page Responsiva</h4>
+                        <div class="project-techs">
+                            <span class="tech-mini">HTML</span>
+                            <span class="tech-mini">CSS</span>
+                        </div>
+                        <p class="project-desc">
+                            Uma página de aterrissagem moderna focada em conversão, totalmente responsiva para mobile e desktop.
+                        </p>
+                    </div>
+                    <a href="#" target="_blank" class="repo-link">
+                        Ver Repositório ↗
+                    </a>
                 </div>
 
-                <div class="project-card">
-                    <h4>Em breve</h4>
-                    <p style="font-size: 0.9rem; color: #666;">Espaço reservado para adicionar repositórios do GitHub.</p>
-                    <span style="font-size: 2rem; color: var(--cor-verde-escuro); margin-top: 10px;">+</span>
+                <!-- CARD "EM BREVE" -->
+                <div class="project-card" style="justify-content: center; align-items: center; border-style: dashed; background: transparent;">
+                    <span style="font-size: 3rem; color: var(--cor-destaque); margin-bottom: 10px;">+</span>
+                    <p style="color: #64748b;">Em breve mais projetos</p>
                 </div>
+
             </div>
         </div>
     </div>
@@ -797,14 +937,14 @@
         // --- WIDGET: CLIMA (SIMULADO) ---
         function updateWeather() {
             const display = document.getElementById('weather-display');
-            display.innerHTML = '<div style="padding: 20px;">Buscando...</div>';
+            display.innerHTML = '<div style="padding: 20px; color: var(--cor-destaque);">Buscando...</div>';
             
             setTimeout(() => {
                 display.innerHTML = `
                     <div style="font-size: 3rem;">🌦</div>
                     <div class="weather-temp">22°C</div>
                     <div class="weather-city">São Bernardo do Campo</div>
-                    <div style="font-size: 0.8rem; color: var(--cor-azul-claro);">Atualizado agora</div>
+                    <div style="font-size: 0.8rem; color: var(--cor-destaque); margin-top:5px;">Atualizado agora</div>
                     <button class="weather-btn" onclick="event.stopPropagation(); updateWeather()">Atualizar</button>
                 `;
             }, 1000);
