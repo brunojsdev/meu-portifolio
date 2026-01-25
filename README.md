@@ -44,8 +44,7 @@ O projeto foi construído utilizando tecnologias fundamentais para o desenvolvim
 Para visualizar o portfólio localmente, siga os passos abaixo:
 
 1. Faça o download ou clone este repositório.
-2. Certifique-se de que os arquivos `index.html`, `style.css` e `script.js` estejam na mesma pasta.
-3. Abra o arquivo `index.html` em qualquer navegador web atualizado.
+2. Abra o arquivo `index.html` em qualquer navegador web atualizado.
 
 ---
 
