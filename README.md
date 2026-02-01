@@ -6,22 +6,6 @@ Atualmente, estou focado no aprendizado como **Desenvolvedor Fullstack Júnior**
 
 ---
 
-## 🛠 Funcionalidades e Projetos Integrados
-
-O portfólio inclui uma série de ferramentas interativas desenvolvidas para demonstrar **lógica de programação** e **manipulação do DOM**:
-
-- **Calculadora**  
-  Operações matemáticas básicas com interface funcional.
-
-- **Lista de Tarefas**  
-  Sistema de gestão de atividades com opções de marcação e exclusão.
-
-- **Widget de Clima**  
-  Simulação de consulta meteorológica.
-
-- **Relógio Digital**  
-  Exibição de tempo real com atualização contínua.
-
 ---
 
 ## 💻 Tecnologias Utilizadas
